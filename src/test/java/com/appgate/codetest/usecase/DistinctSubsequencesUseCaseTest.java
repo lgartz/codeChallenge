@@ -1,7 +1,7 @@
 package com.appgate.codetest.usecase;
 
 import com.appgate.codetest.domain.DistinctSubsequenceRequestDto;
-import com.appgate.codetest.usecase.exceptions.IlegalInputException;
+import com.appgate.codetest.usecase.exceptions.IllegalInputException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,17 +15,20 @@ public class DistinctSubsequencesUseCaseTest {
 
     @Test
     void givenANullRequestThenReturnAnException(){
-        Assertions.assertThrows(IlegalInputException.class, () -> distinctSubsequencesUseCase.execute(null));
+        IllegalInputException exception = Assertions.assertThrows(IllegalInputException.class, () -> distinctSubsequencesUseCase.execute(null));
+        Assertions.assertEquals("The request cannot be null", exception.getMessage());
     }
 
     @Test
     void givenANullStringThenReturnAnException(){
-        Assertions.assertThrows(IlegalInputException.class, () -> distinctSubsequencesUseCase.execute(createRequest(null, "a")));
+        IllegalInputException exception = Assertions.assertThrows(IllegalInputException.class, () -> distinctSubsequencesUseCase.execute(createRequest(null, "a")));
+        Assertions.assertEquals("The string cannot be null", exception.getMessage());
     }
 
     @Test
     void givenANullSubsequenceThenReturnAnException(){
-        Assertions.assertThrows(IlegalInputException.class, () -> distinctSubsequencesUseCase.execute(createRequest("a", null)));
+        IllegalInputException exception = Assertions.assertThrows(IllegalInputException.class, () -> distinctSubsequencesUseCase.execute(createRequest("a", null)));
+        Assertions.assertEquals("The subsequence cannot be null", exception.getMessage());
     }
 
     @Test
@@ -45,7 +48,7 @@ public class DistinctSubsequencesUseCaseTest {
 
     @Test
     void givenAEmptyStringAndCorrectSequenceReturnTheAmount(){
-        Integer quantity = distinctSubsequencesUseCase.execute(createRequest("babgbag", ""));
+        Integer quantity = distinctSubsequencesUseCase.execute(createRequest("", "rabbit"));
         Assertions.assertEquals(0, quantity);
     }
 
