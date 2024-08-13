@@ -23,13 +23,13 @@ public class DistinctSubsequencesUseCaseTest {
     @Test
     void givenANullStringThenReturnAnException(){
         IllegalInputException exception = Assertions.assertThrows(IllegalInputException.class, () -> distinctSubsequencesUseCase.execute(createRequest(null, "a")));
-        Assertions.assertEquals("The string cannot be null", exception.getMessage());
+        Assertions.assertEquals("The parameter s (string) cannot be null", exception.getMessage());
     }
 
     @Test
     void givenANullSubsequenceThenReturnAnException(){
         IllegalInputException exception = Assertions.assertThrows(IllegalInputException.class, () -> distinctSubsequencesUseCase.execute(createRequest("a", null)));
-        Assertions.assertEquals("The subsequence cannot be null", exception.getMessage());
+        Assertions.assertEquals("The parameter t (subsequence) cannot be null", exception.getMessage());
     }
 
     @Test
