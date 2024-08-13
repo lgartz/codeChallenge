@@ -11,9 +11,9 @@ public class DistinctSubsequenceValidator {
         if(isNull(requestDto))
             throw new IllegalInputException("The request cannot be null");
         if(isNull(requestDto.getS()))
-            throw new IllegalInputException("The string cannot be null");
+            throw new IllegalInputException("The parameter s (string) cannot be null");
         if(isNull(requestDto.getT()))
-            throw new IllegalInputException("The subsequence cannot be null");
+            throw new IllegalInputException("The parameter t (subsequence) cannot be null");
     }
 
 }

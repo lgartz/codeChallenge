@@ -24,6 +24,4 @@ public class CalculateSubsequencesAdapter implements CalculateSubsequencesPort {
         return quantity;
     }
 
-
-
 }
