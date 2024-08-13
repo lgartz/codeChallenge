@@ -1,5 +1,8 @@
 package com.appgate.codetest.usecase;
 
+import com.appgate.codetest.domain.DistinctSubsequenceRequestDto;
+import com.appgate.codetest.usecase.exceptions.IlegalInputException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -11,28 +14,43 @@ public class DistinctSubsequencesUseCaseTest {
     private final DistinctSubsequencesUseCase distinctSubsequencesUseCase = new DistinctSubsequencesUseCase();
 
     @Test
+    void givenANullRequestThenReturnAnException(){
+        Assertions.assertThrows(IlegalInputException.class, () -> distinctSubsequencesUseCase.execute(null));
+    }
+
+    @Test
     void givenANullStringThenReturnAnException(){
-        //TODO: Implement this test
+        Assertions.assertThrows(IlegalInputException.class, () -> distinctSubsequencesUseCase.execute(createRequest(null, "a")));
     }
 
     @Test
     void givenANullSubsequenceThenReturnAnException(){
-        //TODO: Implement this test
+        Assertions.assertThrows(IlegalInputException.class, () -> distinctSubsequencesUseCase.execute(createRequest("a", null)));
     }
 
     @Test
     void givenACorrectStringAndSequenceReturnTheAmount(){
-        //TODO: Implement this test
+        Integer quantity = distinctSubsequencesUseCase.execute(createRequest("rabbbit", "rabbit"));
+        Assertions.assertEquals(3, quantity);
+        quantity = distinctSubsequencesUseCase.execute(createRequest("babgbag", "bag"));
+        Assertions.assertEquals(5, quantity);
     }
 
     @Test
     void givenACorrectStringAndEmptySequenceReturnTheAmount(){
-        //TODO: Implement this test
+        Integer quantity = distinctSubsequencesUseCase.execute(createRequest("rabbbit", ""));
+        Assertions.assertEquals(1, quantity);
+
     }
 
     @Test
     void givenAEmptyStringAndCorrectSequenceReturnTheAmount(){
-        //TODO: Implement this test
+        Integer quantity = distinctSubsequencesUseCase.execute(createRequest("babgbag", ""));
+        Assertions.assertEquals(0, quantity);
+    }
+
+    private DistinctSubsequenceRequestDto createRequest(String s, String t){
+        return new DistinctSubsequenceRequestDto (s, t);
     }
 
 }
