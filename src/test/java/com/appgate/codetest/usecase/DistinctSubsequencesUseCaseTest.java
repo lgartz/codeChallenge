@@ -1,5 +1,6 @@
 package com.appgate.codetest.usecase;
 
+import com.appgate.codetest.adapter.CalculateSubsequencesAdapter;
 import com.appgate.codetest.domain.DistinctSubsequenceRequestDto;
 import com.appgate.codetest.usecase.exceptions.IllegalInputException;
 import org.junit.jupiter.api.Assertions;
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.TestInstance;
 @DisplayName("UseCase - Distinct Subsequences")
 public class DistinctSubsequencesUseCaseTest {
 
-    private final DistinctSubsequencesUseCase distinctSubsequencesUseCase = new DistinctSubsequencesUseCase();
+    private final DistinctSubsequencesUseCase distinctSubsequencesUseCase = new DistinctSubsequencesUseCase(new CalculateSubsequencesAdapter());
 
     @Test
     void givenANullRequestThenReturnAnException(){
